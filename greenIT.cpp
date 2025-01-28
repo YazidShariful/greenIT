@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 // Function prototypes
@@ -107,19 +108,61 @@ void energyConsumptionCalculator() {
 // Function for Carbon Footprint Estimator
 void carbonFootprintEstimator() {
     int numDevices;
-    double energyUsage, usageFrequency, totalCO2;
+    vector<int> deviceChoices;
+    vector<double> usageFrequencies;
+    double powerRating, totalEnergy = 0.0, totalCO2 = 0.0;
     string level, tips;
 
     cout << "\n[Carbon Footprint Estimator]" << endl;
     cout << "Enter the number of devices owned: ";
     cin >> numDevices;
-    cout << "Enter energy usage per device (kWh): ";
-    cin >> energyUsage;
-    cout << "Enter usage frequency (hours/day): ";
-    cin >> usageFrequency;
+
+    // Collect device type and usage frequency for each device
+    for (int i = 0; i < numDevices; ++i) {
+        int deviceChoice;
+        double usageFrequency;
+
+        cout << "Device " << i + 1 << " type:" << endl;
+        cout << "1. Smartphone" << endl;
+        cout << "2. Laptop" << endl;
+        cout << "3. Desktop Computer" << endl;
+        cout << "4. Air Conditioner" << endl;
+        cout << "5. Television" << endl;
+        cout << "Enter your choice: ";
+        cin >> deviceChoice;
+
+        // Assign power rating based on device category
+        switch (deviceChoice) {
+            case 1:
+                powerRating = 5;  // Smartphone: 5 watts
+                break;
+            case 2:
+                powerRating = 50; // Laptop: 50 watts
+                break;
+            case 3:
+                powerRating = 200; // Desktop Computer: 200 watts
+                break;
+            case 4:
+                powerRating = 1500; // Air Conditioner: 1500 watts
+                break;
+            case 5:
+                powerRating = 100; // Television: 100 watts
+                break;
+            default:
+                cout << "Invalid device choice. Skipping this device." << endl;
+                continue;
+        }
+
+        cout << "Enter usage frequency for Device " << i + 1 << " (hours/day): ";
+        cin >> usageFrequency;
+
+        // Calculate energy usage for the device
+        double energyUsage = (powerRating * usageFrequency) / 1000; // Convert to kWh
+        totalEnergy += energyUsage;
+    }
 
     // Calculate total CO2 emissions (Assume 0.5 kg CO2 per kWh)
-    totalCO2 = numDevices * energyUsage * usageFrequency * 0.5;
+    totalCO2 = totalEnergy * 0.5;
 
     // Determine emission level and tips
     if (totalCO2 <= 10.0) {
