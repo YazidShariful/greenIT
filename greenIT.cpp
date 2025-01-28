@@ -184,12 +184,42 @@ void carbonFootprintEstimator() {
 
 // Function for Device Lifespan Extender Tools
 void deviceLifespanExtenderTools() {
-    string deviceType, usagePattern, maintenanceHabits;
-    string tips;
+    int deviceChoice;
+    string usagePattern, maintenanceHabits;
+    string deviceType, tips;
 
     cout << "\n[Device Lifespan Extender Tools]" << endl;
-    cout << "Enter device type: ";
-    cin >> deviceType;
+    cout << "Select your device category:" << endl;
+    cout << "1. Smartphone" << endl;
+    cout << "2. Laptop" << endl;
+    cout << "3. Desktop Computer" << endl;
+    cout << "4. Air Conditioner" << endl;
+    cout << "5. Television" << endl;
+    cout << "Enter your choice: ";
+    cin >> deviceChoice;
+
+    // Assign device type based on choice
+    switch (deviceChoice) {
+        case 1:
+            deviceType = "Smartphone";
+            break;
+        case 2:
+            deviceType = "Laptop";
+            break;
+        case 3:
+            deviceType = "Desktop Computer";
+            break;
+        case 4:
+            deviceType = "Air Conditioner";
+            break;
+        case 5:
+            deviceType = "Television";
+            break;
+        default:
+            cout << "Invalid device choice. Returning to menu." << endl;
+            return;
+    }
+
     cout << "Enter usage pattern (light/moderate/heavy): ";
     cin >> usagePattern;
     cout << "Enter maintenance habits (good/average/poor): ";
@@ -211,27 +241,68 @@ void deviceLifespanExtenderTools() {
 // Function for E-Waste Calculator
 void eWasteCalculator() {
     int numDevices;
-    string deviceType;
-    double eWasteGenerated, recoverableMaterials, hazardousMaterials;
+    double totalEWaste = 0.0, totalRecoverableMaterials = 0.0, totalHazardousMaterials = 0.0;
     string tips;
 
     cout << "\n[E-Waste Calculator]" << endl;
     cout << "Enter the number of devices owned: ";
     cin >> numDevices;
-    cout << "Enter device type: ";
-    cin >> deviceType;
 
-    // Calculate estimated e-waste and materials (Assume sample values)
-    eWasteGenerated = numDevices * 1.5; // Assume 1.5 kg per device
-    recoverableMaterials = eWasteGenerated * 0.6; // 60% recyclable
-    hazardousMaterials = eWasteGenerated * 0.1; // 10% hazardous
+    for (int i = 0; i < numDevices; ++i) {
+        int deviceChoice;
+        double eWasteGenerated, recoverableMaterials, hazardousMaterials;
+
+        cout << "\nDevice " << i + 1 << ":" << endl;
+        cout << "Select the device type:" << endl;
+        cout << "1. Smartphone" << endl;
+        cout << "2. Laptop" << endl;
+        cout << "3. Desktop Computer" << endl;
+        cout << "4. Air Conditioner" << endl;
+        cout << "5. Television" << endl;
+        cout << "Enter your choice: ";
+        cin >> deviceChoice;
+
+        // Assign e-waste values based on device type
+        switch (deviceChoice) {
+            case 1:
+                eWasteGenerated = 0.2; // Smartphone: 0.2 kg
+                break;
+            case 2:
+                eWasteGenerated = 2.0; // Laptop: 2.0 kg
+                break;
+            case 3:
+                eWasteGenerated = 5.0; // Desktop Computer: 5.0 kg
+                break;
+            case 4:
+                eWasteGenerated = 25.0; // Air Conditioner: 25.0 kg
+                break;
+            case 5:
+                eWasteGenerated = 10.0; // Television: 10.0 kg
+                break;
+            default:
+                cout << "Invalid choice. Skipping this device." << endl;
+                continue;
+        }
+
+        // Calculate recoverable and hazardous materials
+        recoverableMaterials = eWasteGenerated * 0.6; // 60% recyclable
+        hazardousMaterials = eWasteGenerated * 0.1;  // 10% hazardous
+
+        // Accumulate totals
+        totalEWaste += eWasteGenerated;
+        totalRecoverableMaterials += recoverableMaterials;
+        totalHazardousMaterials += hazardousMaterials;
+    }
 
     // General tips for reducing e-waste
     tips = "Recycle old devices, donate functional electronics, and avoid unnecessary upgrades.";
 
     // Output results
-    cout << "Estimated e-waste generated: " << eWasteGenerated << " kg" << endl;
-    cout << "Estimated recoverable materials: " << recoverableMaterials << " kg" << endl;
-    cout << "Estimated hazardous materials: " << hazardousMaterials << " kg" << endl;
+    cout << "\nSummary of E-Waste Calculation:" << endl;
+    cout << "Total estimated e-waste generated: " << totalEWaste << " kg" << endl;
+    cout << "Total recoverable materials: " << totalRecoverableMaterials << " kg" << endl;
+    cout << "Total hazardous materials: " << totalHazardousMaterials << " kg" << endl;
     cout << "Tips: " << tips << endl;
 }
+
+
