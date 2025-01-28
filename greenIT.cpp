@@ -44,17 +44,44 @@ int main() {
 
 // Function for Energy Consumption Calculator
 void energyConsumptionCalculator() {
-    string deviceType;
+    int deviceChoice;
     double usageHours, powerRating, energyConsumed;
     string level, tips;
 
     cout << "\n[Energy Consumption Calculator]" << endl;
-    cout << "Enter device type: ";
-    cin >> deviceType;
+    cout << "Select your device category:" << endl;
+    cout << "1. Smartphone" << endl;
+    cout << "2. Laptop" << endl;
+    cout << "3. Desktop Computer" << endl;
+    cout << "4. Air Conditioner" << endl;
+    cout << "5. Television" << endl;
+    cout << "Enter your choice: ";
+    cin >> deviceChoice;
+
+    // Assign power rating based on device category
+    switch (deviceChoice) {
+        case 1:
+            powerRating = 5;  // Smartphone: 5 watts
+            break;
+        case 2:
+            powerRating = 50; // Laptop: 50 watts
+            break;
+        case 3:
+            powerRating = 200; // Desktop Computer: 200 watts
+            break;
+        case 4:
+            powerRating = 1500; // Air Conditioner: 1500 watts
+            break;
+        case 5:
+            powerRating = 100; // Television: 100 watts
+            break;
+        default:
+            cout << "Invalid device choice. Returning to menu." << endl;
+            return;
+    }
+
     cout << "Enter usage hours per day: ";
     cin >> usageHours;
-    cout << "Enter power rating in watts: ";
-    cin >> powerRating;
 
     // Calculate total energy consumed
     energyConsumed = (usageHours * powerRating) / 1000; // Convert to kWh
