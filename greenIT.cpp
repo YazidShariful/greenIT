@@ -90,13 +90,13 @@ void energyConsumptionCalculator() {
     // Determine energy level and tips
     if (energyConsumed <= 2.0) {
         level = "Low";
-        tips = "Great job! Keep using energy-saving modes and unplugging devices when not in use.";
+        tips = "Great job! Keep on reducing the usage of electronic devices or using energy-saving modes and unplugging devices when not in use.";
     } else if (energyConsumed <= 5.0) {
         level = "Medium";
         tips = "Try reducing usage hours or switching to energy-efficient devices.";
     } else {
         level = "High";
-        tips = "Consider investing in energy-efficient appliances and minimizing usage time.";
+        tips = "Warning!, Consider investing in energy-efficient appliances and minimizing usage time. High energy usage may causes harm to the environment !";
     }
 
     // Output results
@@ -173,7 +173,7 @@ void carbonFootprintEstimator() {
         tips = "Consider reducing device usage or switching to renewable energy.";
     } else {
         level = "High";
-        tips = "Focus on reducing device energy consumption and unplugging unused electronics.";
+        tips = "Warning!, High carbon emission. Focus on reducing device energy consumption and unplugging unused electronics. High carbon footprint may harm the environment";
     }
 
     // Output results
@@ -181,6 +181,16 @@ void carbonFootprintEstimator() {
     cout << "Emission level: " << level << endl;
     cout << "Tips: " << tips << endl;
 }
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+#include <iostream>
+#include <string>
+
+using namespace std;
 
 // Function for Device Lifespan Extender Tools
 void deviceLifespanExtenderTools() {
@@ -200,21 +210,11 @@ void deviceLifespanExtenderTools() {
 
     // Assign device type based on choice
     switch (deviceChoice) {
-        case 1:
-            deviceType = "Smartphone";
-            break;
-        case 2:
-            deviceType = "Laptop";
-            break;
-        case 3:
-            deviceType = "Desktop Computer";
-            break;
-        case 4:
-            deviceType = "Air Conditioner";
-            break;
-        case 5:
-            deviceType = "Television";
-            break;
+        case 1: deviceType = "Smartphone"; break;
+        case 2: deviceType = "Laptop"; break;
+        case 3: deviceType = "Desktop Computer"; break;
+        case 4: deviceType = "Air Conditioner"; break;
+        case 5: deviceType = "Television"; break;
         default:
             cout << "Invalid device choice. Returning to menu." << endl;
             return;
@@ -225,18 +225,65 @@ void deviceLifespanExtenderTools() {
     cout << "Enter maintenance habits (good/average/poor): ";
     cin >> maintenanceHabits;
 
-    // Generate tips based on input
-    if (usagePattern == "heavy" || maintenanceHabits == "poor") {
-        tips = "Reduce overuse, clean the device regularly, and ensure proper ventilation.";
-    } else if (usagePattern == "moderate" && maintenanceHabits == "average") {
-        tips = "Schedule periodic maintenance and avoid running multiple heavy tasks simultaneously.";
-    } else {
-        tips = "Keep up the good work! Continue maintaining your device and using it responsibly.";
+    // Generate different tips based on device type, usage pattern, and maintenance habits
+    switch (deviceChoice) {
+        case 1: // Smartphone
+            if (usagePattern == "heavy" || maintenanceHabits == "poor") {
+                tips = "Avoid overcharging, use dark mode to reduce battery strain, and close unused apps.";
+            } else if (usagePattern == "moderate" && maintenanceHabits == "average") {
+                tips = "Charge between 20-80% and clean the charging port occasionally.";
+            } else {
+                tips = "Great job! Keep updating apps and clear cache for better performance.";
+            }
+            break;
+
+        case 2: // Laptop
+            if (usagePattern == "heavy" || maintenanceHabits == "poor") {
+                tips = "Avoid overheating, use a cooling pad, and don’t leave it plugged in 24/7.";
+            } else if (usagePattern == "moderate" && maintenanceHabits == "average") {
+                tips = "Keep your software updated and clean the keyboard and fans regularly.";
+            } else {
+                tips = "You're maintaining it well! Consider using battery saver mode for longevity.";
+            }
+            break;
+
+        case 3: // Desktop Computer
+            if (usagePattern == "heavy" || maintenanceHabits == "poor") {
+                tips = "Clean the dust from fans, ensure proper ventilation, and use a surge protector.";
+            } else if (usagePattern == "moderate" && maintenanceHabits == "average") {
+                tips = "Update drivers regularly and avoid excessive background programs.";
+            } else {
+                tips = "Good work! Keep checking for malware and optimizing disk performance.";
+            }
+            break;
+
+        case 4: // Air Conditioner
+            if (usagePattern == "heavy" || maintenanceHabits == "poor") {
+                tips = "Clean the filters monthly, check refrigerant levels, and avoid extreme temperature settings.";
+            } else if (usagePattern == "moderate" && maintenanceHabits == "average") {
+                tips = "Schedule annual servicing and avoid frequently turning it on and off.";
+            } else {
+                tips = "Excellent maintenance! Keep doors/windows closed while running it for efficiency.";
+            }
+            break;
+
+        case 5: // Television
+            if (usagePattern == "heavy" || maintenanceHabits == "poor") {
+                tips = "Avoid running the TV for long hours, clean the screen properly, and use a voltage stabilizer.";
+            } else if (usagePattern == "moderate" && maintenanceHabits == "average") {
+                tips = "Turn off when not in use and avoid exposing the screen to direct sunlight.";
+            } else {
+                tips = "Nice job! Using energy-saving mode can further improve lifespan.";
+            }
+            break;
     }
 
-    // Output results
-    cout << "Tips to extend the lifespan of your " << deviceType << ": " << tips << endl;
+    // Output results including Green IT tip
+    cout << "\nTips to extend the lifespan of your " << deviceType << ": " << tips << endl;
+    cout << "\n[Green IT Tip]: By extending your device's lifespan, you help reduce electronic waste, lower energy consumption, and minimize your environmental impact. Sustainable usage means fewer devices in landfills and a smaller carbon footprint!" << endl;
 }
+
+
 
 // Function for E-Waste Calculator
 void eWasteCalculator() {
@@ -295,7 +342,7 @@ void eWasteCalculator() {
     }
 
     // General tips for reducing e-waste
-    tips = "Recycle old devices, donate functional electronics, and avoid unnecessary upgrades.";
+    tips = "Recycle old devices, donate functional electronics, prevent from throwing the devices together with other household trash and avoid unnecessary upgrades.";
 
     // Output results
     cout << "\nSummary of E-Waste Calculation:" << endl;
@@ -303,6 +350,7 @@ void eWasteCalculator() {
     cout << "Total recoverable materials: " << totalRecoverableMaterials << " kg" << endl;
     cout << "Total hazardous materials: " << totalHazardousMaterials << " kg" << endl;
     cout << "Tips: " << tips << endl;
+    cout << "[Green IT Tip]: E-waste is one of the fastest-growing environmental issues. Proper disposal and recycling of old electronics reduce harmful waste, recover valuable materials, and minimize landfill pollution. Consider donating, reselling, or using certified e-waste recycling centers to reduce environmental impact." << endl;
 }
 
 
