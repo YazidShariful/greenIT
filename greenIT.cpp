@@ -182,13 +182,7 @@ void carbonFootprintEstimator() {
     cout << "Tips: " << tips << endl;
 }
 
-#include <iostream>
-#include <string>
 
-using namespace std;
-
-#include <iostream>
-#include <string>
 
 using namespace std;
 
